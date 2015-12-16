@@ -3,3 +3,4 @@ dist
 .vscode
 .settings
 .idea
+npm-debug.log
