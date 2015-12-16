@@ -1,8 +1,14 @@
-import { createStore } from 'redux'
+import { createStore, compose } from 'redux'
 import rootReducer from '../reducers'
+import { stateHistoryTracker as trackHistory, Devtool as debugStateHistory } from 'redux-state-history';
+
+const finalCreateStore = compose(
+  // debugStateHistory,
+  trackHistory()
+)(createStore);
 
 export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState)
+  const store = finalCreateStore(rootReducer)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
