@@ -3,7 +3,7 @@ import todos from './todos'
 
 const rootReducer = combineReducers({
   todos,
-  stateHistory: (state, action) => state
+  stateHistory: (state = {}, action) => state
 })
 
 export default rootReducer
