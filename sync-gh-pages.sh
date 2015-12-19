@@ -3,10 +3,10 @@
 
 set -e
 
-if [ "$TRAVIS_BRANCH" != "master" ]; then
-  echo "Not on master branch, skipping gh-pages sync";
-  exit 0
-fi
+#if [ "$TRAVIS_BRANCH" != "master" ]; then
+#  echo "Not on master branch, skipping gh-pages sync";
+#  exit 0
+#fi
 
 export GIT_COMMITTER_EMAIL="inaki@inakianduaga.com"
 export GIT_COMMITTER_NAME="Inaki Anduaga"
