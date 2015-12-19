@@ -1,0 +1,27 @@
+sudo: required
+dist: trusty
+before_install:
+- docker build -t npm ./
+script:
+- docker run --rm -i -v $PWD:/app npm install
+- docker run --rm -i -v $PWD:/app npm run build
+- zip -r build.zip ./build
+deploy:
+  - provider: npm
+    email: inaki@inakianduaga.com
+    api_key:
+      secure: mOBDVbfS14QJ6u7IEGdsGFXT9NhpJG8EFvSCh/pS9RfKMXpIaH5Rhac1YRUV+zoOMDZFPpsE04S3Zplf/M1Rpdle0uihYfzaCR+8P5SSchzHvCsX0B1Ho+bXppZSBHhIxnRHVwMd0aRxjIUOLkmA/ibfyGHdgyZWJCOtesQ20CRIijUkhLtlKX+ayCmuj6wKSr0+g5Od/fK+aUcpkwXHzACNhXIbLej2FPKCsqLG2VDwFJlQ1IB0sJZMwPAkipv1HZZWAJeXRRx4bt85tPoT3Go+XRpiE03nq2gNg46QiP9bYn1cVBEL7RqTBHQHClAvPf2EMe/J9gtMwdrmswQvTiznCagFgVT98KrLaTUsiGQddbqIQCT1RJ9MzcZULjyYURi1iGRoi0CiOSgeqNLLKh+plBh38kmODF98+U93sAzMir8M8cWshNxN5AUh84312St7aKOx4OHXNcWSiJPwA9Jkxnso5TMAlu3mZeR5dJnDxKRk7n0J5DZ5RYA6uiK2/ciQwFqf6nSmJHFzqszNYmkYQYn4QhlD8Etgw/leC9qhHSXVdJ+Mwq/Tq5Owj5gCUXY3yVZ3TRzqf+bYYn1btrYPDNg7G4oECdNoxfp9+xjQ003vvLr2zO8YwTYlfuUR8ODGTvP//cqypJ9ayX/SFsb53VyNKlNMLHECj+zzLYM=
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: inakianduaga/redux-state-history-example
+      branch: production
+  - provider: releases
+    api_key:
+      secure: m3tmJfVNfhF/QC7KjjH7KSJbehQNzPmJyAnCXyI7uN6hKSzPFaxkZtuDICMO3C9N9bEakWt47xyb1Bnhi/02lOaTmDAJOnPfhKRN1ljPPtTH1oKWFue6ecxu6ST2iWqjewBMkAwQKLFNRkHFy5wRXDcZcctOPbAXl1kyaoE1fs+kAmHa8CJugBYrIok+cHtvxVCSQnGaHorQH8n6fRw9UAv7GNPAzWrB6RLX64n8HpverFaLjwmz05f443P89DYfD9U0CI6A59KaSDIUspSKBrJkgIhEMOku1K1VBktiU2aoGVAbJcKDA+S3OlDRvUqad3t9iTWao8MyCuiI7AON1b1g3nMdeMB29m9Lwka7idqAtakWcpsVQ5uFk9zoJh0hF39pwUTV82QCSu6JA9B+C67uIi1yQzoFEV1ps5G8gZBc6XJIjYnuMN3kdfTaGa0vvJsVSDCZiwpPEQgfdIg4qbPIvBLve5Q7noNMGOQrM3/7DIfTb4t7fJnnu2umpceioaUiKe3m29A9jtCp64PrxvB0QlF3Op3v4ALHcZUazBgiBcIBxyMvv40FsfUXhdevfDRyD9g/hrUmKBvSUZRf4tokO+8JILZN0iyYcXFv6M68mSJObL+xBPIGKTJbKb0uGWvO1xs2W03gTQsAXKcf3IC/BPUi+TONdsT/wfroJW4=
+    skip_cleanup: true
+    file: build.zip
+    on:
+      repo: inakianduaga/redux-state-history-example
+      tags: true
+after_deploy:

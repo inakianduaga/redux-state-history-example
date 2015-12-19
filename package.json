@@ -4,8 +4,13 @@
   "description": "Redux State History Example (based off redux-todomvc-example)",
   "scripts": {
     "start": "node server.js",
+    "build": "npm run clean && npm run build:umd",
+    "build:umd": "NODE_ENV=production node ./node_modules/webpack/bin/webpack.js --config webpack.config.prod.js --progress --colors",
     "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register --require ./test/setup.js",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "clean": "rimraf build",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags && rm -rf lib"
   },
   "repository": {
     "type": "git",
@@ -15,6 +20,10 @@
   "bugs": {
     "url": "https://github.com/inakianduaga/redux-state-history-example/issues"
   },
+  "files": [
+    "build",
+    "src"
+  ],
   "homepage": "https://github.com/inakianduaga/redux-state-history-example",
   "dependencies": {
     "classnames": "^2.1.2",
@@ -40,6 +49,7 @@
     "todomvc-app-css": "^2.0.1",
     "webpack": "^1.9.11",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.2.0"
+    "webpack-hot-middleware": "^2.2.0",
+    "rimraf": "^2.4.4"
   }
 }

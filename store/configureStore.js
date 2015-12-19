@@ -1,6 +1,6 @@
 import { createStore, compose } from 'redux'
 import rootReducer from '../reducers'
-import { stateHistoryTracker as trackHistory } from 'redux-state-history';
+import { stateHistoryTracker as trackHistory } from 'redux-state-history/lib/stateHistory';
 import { Devtool as debugStateHistory } from 'redux-state-history';
 
 const finalCreateStore = compose(

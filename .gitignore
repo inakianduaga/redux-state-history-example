@@ -1,6 +1,8 @@
 node_modules
 dist
+build
 .vscode
 .settings
 .idea
+build.zip
 npm-debug.log
