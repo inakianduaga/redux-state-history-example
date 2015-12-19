@@ -25,3 +25,4 @@ deploy:
       repo: inakianduaga/redux-state-history-example
       tags: true
 after_deploy:
+- ./sync-gh-pages.sh
