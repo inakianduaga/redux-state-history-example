@@ -1,6 +1,6 @@
 {
   "name": "redux-state-history-example",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Redux State History Example (based off redux-todomvc-example)",
   "scripts": {
     "start": "node server.js",
