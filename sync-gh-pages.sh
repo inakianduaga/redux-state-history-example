@@ -11,7 +11,7 @@ set -e
 export GIT_COMMITTER_EMAIL="inaki@inakianduaga.com"
 export GIT_COMMITTER_NAME="Inaki Anduaga"
 
-git add /build                         # gh-releases /build folder is not on master branch, so we add it
+git add -f ./build                     # gh-releases /build folder is not on master branch, so we add it
 git stash                              # stash files before switching branches
 git checkout gh-pages
 git stash apply --index                # override gh-pages build folder
